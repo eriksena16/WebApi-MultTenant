@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>WebApi_MultTenant</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Estoque\Repository\" />
+    <Folder Include="Estoque\Service\" />
+    <Folder Include="Model\" />
+    <Folder Include="Context\" />
+    <Folder Include="Config\" />
+    <Folder Include="Security\" />
+  </ItemGroup>
+
+</Project>
