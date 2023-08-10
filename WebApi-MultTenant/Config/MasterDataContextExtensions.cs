@@ -11,6 +11,9 @@ namespace WebApi_MultTenant.Config
 
             services.AddDbContext<ContextoMaster>(options =>
                                 options.UseSqlServer(connectionString));
+
+            //services.AddDbContext<Contexto>(options =>
+            //                    options.UseSqlServer(connectionString));
         }
     }
 }

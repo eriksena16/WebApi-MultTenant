@@ -1,6 +1,4 @@
-using Microsoft.EntityFrameworkCore;
 using WebApi_MultTenant.Config;
-using WebApi_MultTenant.Context;
 using WebApi_MultTenant.Security;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,7 +22,7 @@ builder.Services.Configure<BearerSecurityKey>(builder.Configuration.GetSection(n
 builder.Services.AddMasterDbContext(builder.Configuration);
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-builder.Services.AddCustomerDbContext(builder.Configuration);
+//builder.Services.AddCustomerDbContext(builder.Configuration);
 
 var app = builder.Build();
 

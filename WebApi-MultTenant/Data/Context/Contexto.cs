@@ -10,8 +10,7 @@ namespace WebApi_MultTenant.Context
         {
         }
 
-        public DbSet<Usuario> Usuarios { get; set; }
-        public DbSet<Conta> Contas { get; set; }
+       
         public DbSet<Produto> Produtos { get; set; }
     }
 }

@@ -1,0 +1,3 @@
+﻿add-migration -context Contexto Inicialcliente
+update-database -context Contexto
+Script-Migration -Idempotent -context Contexto
