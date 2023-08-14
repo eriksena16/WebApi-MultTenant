@@ -1,3 +1,13 @@
 ﻿add-migration -context Contexto Inicialcliente
 update-database -context Contexto
 Script-Migration -Idempotent -context Contexto
+
+
+// para o identityServer
+add-migration InitialIdentityServerMigration -c PersistedGrantDbContext
+add-migration InitialIdentityServerMigration -c ConfigurationDbContext
+
+update-database -Context PersistedGrantDbContext
+update-database -Context ConfigurationDbContext
+
+add-migration InitialAspNetIdentityMigration -Context AspNetIdentityDbContext
