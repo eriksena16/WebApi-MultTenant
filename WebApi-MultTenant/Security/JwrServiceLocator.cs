@@ -2,9 +2,9 @@
 {
     public static class JwrServiceLocator
     {
-        public static void CofigureJwtService(this IServiceCollection services)
-        {
-            services.AddScoped<IJwtAuthotizationService, JwtAuthorizationService>();
-        }
+        //public static void CofigureJwtService(this IServiceCollection services)
+        //{
+        //    services.AddScoped<IJwtAuthotizationService, JwtAuthorizationService>();
+        //}
     }
 }

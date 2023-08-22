@@ -22,7 +22,8 @@ builder.Services.Configure<BearerSecurityKey>(builder.Configuration.GetSection(n
 builder.Services.AddMasterDbContext(builder.Configuration);
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-//builder.Services.AddCustomerDbContext(builder.Configuration);
+builder.Services.AddScoped<IJwtAuthorizationService, JwtAuthorizationService>();
+builder.Services.AddCustomerDbContext(builder.Configuration);
 
 var app = builder.Build();
 
@@ -35,7 +36,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllers();

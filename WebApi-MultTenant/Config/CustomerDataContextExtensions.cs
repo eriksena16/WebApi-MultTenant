@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using WebApi_MultTenant.Context;
 
 namespace WebApi_MultTenant.Config
@@ -11,15 +12,7 @@ namespace WebApi_MultTenant.Config
             {
                 var httpContext = provider.GetService<IHttpContextAccessor>();
 
-                // In this sample we are using a customer identifier as the firs segment in the url request
-                // Ex: http://localhost:5000/clienta/contacts
-                //     http://localhost:5000/clientb/contacts
-                var clientSlug = httpContext.HttpContext.Request.Path.Value.Split("/", StringSplitOptions.RemoveEmptyEntries)[1];
-
-                // If you need to perform any validation like if the customer exists
-                // or if it has a valid subscription you can request a master context
-                // and perform validations
-                //var masterContext = provider.GetService<ContextoMaster>();
+                var clientSlug = httpContext.HttpContext.User.GetClientSlug();
 
                 var connString = configuration.GetClientConnectionString(clientSlug);
                 var opts = new DbContextOptionsBuilder<Contexto>();
@@ -28,6 +21,26 @@ namespace WebApi_MultTenant.Config
 
                 return new Contexto(opts.Options);
             });
+        }
+        public static long GetAccountId(this ClaimsPrincipal principal)
+        {
+            if (principal == null)
+            {
+                throw new ArgumentException(nameof(principal));
+            }
+
+            var accountId = principal.Claims.FirstOrDefault(c => c.Type == "lastAccountId").Value;
+            return long.Parse(accountId);
+        }
+        public static string GetClientSlug(this ClaimsPrincipal principal)
+        {
+            if (principal == null)
+            {
+                throw new ArgumentException(nameof(principal));
+            }
+
+            var slug = principal.Claims.FirstOrDefault(c => c.Type == "slug").Value;
+            return slug;
         }
     }
 }
