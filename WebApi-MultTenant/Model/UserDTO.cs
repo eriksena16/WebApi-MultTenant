@@ -4,8 +4,7 @@
 
 namespace WebApi_MultTenant.Model
 {
-    [Route("api/[controller]")]
-    [ApiController]
+   
     public class UserDTO
     {
         public string Email { get; set; }
